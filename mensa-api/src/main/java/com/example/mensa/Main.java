@@ -93,14 +93,17 @@ public class Main implements BackgroundFunction<PubSubMessage> {
             var f = data.getFetchedFoodProviders();
             Integer id = 1;
             for (FetchedFoodProvider foodProvider : f) {
-                createFoodProviderEntry(
-                        id,
-                        batch,
-                        foodProvider,
-                        db,
-                        additives
-                );
-                id++;
+                // Ignore Interimsmensa
+                if(!foodProvider.getName().equals("Interimsmensa Sprachenzentrum Würzburg")){
+                    createFoodProviderEntry(
+                            id,
+                            batch,
+                            foodProvider,
+                            db,
+                            additives
+                    );
+                    id++;
+                }
             }
 
             /*
